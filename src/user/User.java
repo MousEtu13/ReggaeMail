@@ -12,9 +12,9 @@ import mailer.RegAuthenticator;
 
 public class User {
 	
-	public String primaryemail="pablo.arrighi@gmail.com";
-	public String secondaryemail="pablo.arrighi.reggaemail@gmail.com";
-	public String secondarypassword="m1diiunivamu";
+	public String primaryemail="malek.karki.reggae@gmail.com";
+	public String secondaryemail="sofiane.charouk.reggaemail@gmail.com";
+	public String secondarypassword=",;:!,;:!";
 	public String smtp_auth="true";
 	public String smtp_host="smtp.gmail.com";
 	public String smtp_port="587";

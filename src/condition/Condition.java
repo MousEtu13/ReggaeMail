@@ -1,7 +1,6 @@
 package condition;
 
 public class Condition {
-	
 	String regcond;
 
 	public Condition(String regcond) {
@@ -10,7 +9,5 @@ public class Condition {
 
 	public boolean eval() {
 		return false;
-	};
-	
-	
+	};	
 }
