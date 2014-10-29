@@ -25,6 +25,7 @@ public class ReaderTest {
 
 	@Test
 	public void testReadFolder() throws MessagingException {
+          System.out.println("Welcome to ReggaeMail!");
           Reader.readFolder(u);
 
           //Print them out
