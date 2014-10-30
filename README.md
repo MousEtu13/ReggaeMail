@@ -8,7 +8,12 @@ __________
 modifiées sur votre dépôt local également. Pensez à vérifier que vous avez les bonnes infos avant de tester
 le programme.
 
-* Merci de ne faire des Pulls Requests qu'avec du code propre, commenté, documenté et testé.
+* Merci de ne faire des Pulls Requests qu'avec du code propre, complet (ne faites pas de Pull Request si votre code est
+encore en cours de développement), commenté, documenté et testé un maximum (n'y incluez pas du code qui risquerai de
+rendre le programme instable).
+
+* N'hésitez pas à utiliser le système des branches de développement de Git.
+-> Au besoin : http://openclassrooms.com/courses/gerer-son-code-avec-git-et-github
 
 * Les mails de programmation (envoyés sur le mail secondaire) doivent être dans le format Texte Brut.
 
