@@ -6,7 +6,6 @@ import java.util.Date;
 
 
 public class WhenCondition extends Condition {
-
 	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
 	
 	public WhenCondition(String regcond) throws ParseException {
@@ -16,5 +15,4 @@ public class WhenCondition extends Condition {
 	public boolean eval() {
 		return (sdf.format(new Date()).compareTo(regcond)==0);
 	}
-
 }
