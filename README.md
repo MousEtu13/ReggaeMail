@@ -14,6 +14,8 @@ le programme.
 encore en cours de développement), commenté, documenté et testé un maximum (n'y incluez pas du code qui risquerai de
 rendre le programme instable).
 
+-> Le format JavaDoc pour documenter le code : http://www.jmdoudoux.fr/java/dej/chap-javadoc.htm#javadoc-2
+
 * Vous pouvez modifier des méthodes déjà existantes tant que vous les testez aprés et que vous ne modifier ni les
 argument, ni le résultat en sortie. Si vous souhaitez modifier les arguments (mais pas le résultat), créez plutôt
 une nouvelle méthode du même nom pour la surcharger. Java fait très bien la différence lors de l'utilisation, autant
