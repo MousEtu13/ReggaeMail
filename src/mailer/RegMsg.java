@@ -5,6 +5,8 @@ import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
+
 import java.io.IOException;
 import java.util.regex.Pattern; 
 import java.util.regex.Matcher;
@@ -27,6 +29,8 @@ public class RegMsg extends MimeMessage {
     private static String REGEXTO = "regTo:(.*)";
     /** Expression régulière décrivant le format de la règle regTo */
     private static String REGEXWHEN = "regWhen:(.*)";
+    /** Expression régulière décrivant le format de la règle regKey */
+	private static String REGEXKEYWORD = "regKey:(.*)";
 
     /**
      * Construit un objet RegMsg à partir d'un objet MimeMessage (javax.mail.internet.MimeMessage).
@@ -51,10 +55,32 @@ public class RegMsg extends MimeMessage {
 		body = getContent().toString();
 	    Pattern p = Pattern.compile(REGEXWHEN);
 	    Matcher m = p.matcher(body);
+	    
 	    // Recherche et récupération du contenu de la règle
 	    if (m.find()) {regwhen = m.group(1);}
 	
 		return regwhen;
+	}
+	
+	/**
+	 * Obtenir le contenu de la règle regKey.
+	 * @return						la chaîne de caractères contenue dans regKey.
+	 * @throws IOException			Exceptions produites par l'échec ou l'interruption d'opérations d'I/O de java.io.
+	 * @throws MessagingException	Exceptions levées par les classes de messagerie de l'API javax.mail.
+	 */
+	public String getRegKey () throws IOException, MessagingException {
+		String regkeyword = null;
+		String body = null;
+	
+		// Construction du pattern et du matcher pour reconnaître REGEXKEYWORD
+		body = getContent ().toString ();
+		Pattern p = Pattern.compile (REGEXKEYWORD);
+		Matcher m = p.matcher (body);
+
+		// Recherche et récupération du contenu de la règle
+		if (m.find ()) { regkeyword = m.group (1);}
+		
+		return regkeyword;
 	}
 	
 	/**
@@ -81,7 +107,6 @@ public class RegMsg extends MimeMessage {
 	        // Modification des champs From et To
 			setFrom(getAllRecipients()[0]);
 			setRecipients(Message.RecipientType.TO,InternetAddress.parse(m.group(1)));
-	
 		}
 		catch (Exception e)
 		{
