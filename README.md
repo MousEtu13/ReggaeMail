@@ -13,6 +13,7 @@ encore en cours de développement), commenté, documenté et testé un maximum (
 rendre le programme instable).
 
 * N'hésitez pas à utiliser le système des branches de développement de Git.
+
 -> Au besoin : http://openclassrooms.com/courses/gerer-son-code-avec-git-et-github
 
 * Les mails de programmation (envoyés sur le mail secondaire) doivent être dans le format Texte Brut.
