@@ -3,13 +3,15 @@ package condition;
 public class Condition {
 	
 	String regcond;
+	String Periode;
 
-	public Condition(String regcond) {
+	public Condition(String regcond, String Periode) {
 		this.regcond = regcond;
+		this.Periode = Periode;
 	}
 
-	public boolean eval() {
-		return false;
+	public int eval() {
+		return 0;
 	};
 	
 	
