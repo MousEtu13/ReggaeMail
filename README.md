@@ -1,7 +1,7 @@
 ReggaeMail
-
 ==========
 
+==========
 /!\ ATTENTION : GitHub (CharlyEtu) <-> Local /!\
 
 * Lorsque vous faites un Pull Request, si vous avez modifié les attributs 'primarymail', 'secondarymail' et
@@ -10,5 +10,4 @@ modifiées sur votre dépôt local également. Pensez à vérifier que vous avez
 le programme.
 
 * Les mails de programmation (envoyés sur le mail secondaire) doivent être dans le format Texte Brut.
-
 ==========
