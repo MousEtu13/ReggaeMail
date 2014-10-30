@@ -8,6 +8,8 @@ __________
 modifiées sur votre dépôt local également. Pensez à vérifier que vous avez les bonnes infos avant de tester
 le programme.
 
+* Merci de ne faire des Pulls Requests qu'avec du code propre, commenté, documenté et testé.
+
 * Les mails de programmation (envoyés sur le mail secondaire) doivent être dans le format Texte Brut.
 
 __________
