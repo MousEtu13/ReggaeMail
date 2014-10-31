@@ -78,7 +78,7 @@ public class Controller {
         for (Message msg : Reader.messages) 
         {
 
-        	System.out.println("*****************************************************************************");
+        	System.out.println("***********************************************************************************************************************");
         	//System.out.println(msg.getMessageNumber());
         	//System.out.println(folder.getUID(Reader.messages)
         	System.out.println("Subject: " + msg.getSubject());
@@ -89,7 +89,7 @@ public class Controller {
         	//System.out.println(msg.getContentType());
         	//System.out.println("Size: "+msg.getSize());
         	//System.out.println(msg.getFlags());
-        	System.out.println("-------------------- Evaluating the Condition -------------------------------");
+        	System.out.println("------------------------------------------- Evaluating the Condition ---------------------------------------------------");
         	RegMsg rmsg=new RegMsg((MimeMessage) msg);
         	String regwhen = rmsg.getRegWhen();//date et heure 
         	String regkey = rmsg.getRegKey();
@@ -106,7 +106,7 @@ public class Controller {
         	
         	/**Traitement par mot clé**/
         	if (key.equals(regkey)) {
-				System.out.println ("-------------------- Preparing and sending the mail (MODE : KeyMode) -------------------------------");
+				System.out.println ("---------------------------- Preparing and sending the mail (MODE : KeyMode) --------------------------------------");
 				rmsg.prepare ();
 				System.out.println ("Subject: " + rmsg.getSubject ());
 				System.out.println ("From: " + rmsg.getFrom ()[0]);
@@ -118,10 +118,10 @@ public class Controller {
 			}
         	
         	/**Traitement Normal**/
-        	switch (c.eval()){
+        	switch (c.evalBis()){
         		
         		case 1:
-        			System.out.println("-------------------- Preparing and sending the mail (MODE : Periode1) -------------------------------");
+        			System.out.println("-------------------------- Preparing and sending the mail (MODE : Periode1) -------------------------------------");
         			rmsg.prepare();
         			System.out.println("Subject: " + rmsg.getSubject());//sujet du message 
         			System.out.println("From: " + rmsg.getFrom()[0]);// de la part de qui
@@ -133,7 +133,7 @@ public class Controller {
         			break;
         		
         		case 2:
-        			System.out.println("-------------------- Preparing and sending the mail (MODE : Periode2) -------------------------------");
+        			System.out.println("---------------------------- Preparing and sending the mail (MODE : Periode2) ------------------------------------");
         			rmsg.prepare();
         			System.out.println("Subject: " + rmsg.getSubject());//sujet du message 
         			System.out.println("From: " + rmsg.getFrom()[0]);// de la part de qui

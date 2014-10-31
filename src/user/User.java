@@ -18,9 +18,9 @@ import mailer.RegAuthenticator;
  */
 public class User {
 	
-	public String primaryemail = "fekari.mustapha@gmail.com";
-	public String secondaryemail = "fekari.mustapha.reggaemai@gmail.com";
-	public String secondarypassword = "Mous13Mous";
+	public String primaryemail = "USER@gmail.com";
+	public String secondaryemail = "USER.reggaemai@gmail.com";
+	public String secondarypassword = "PASS";
 
 	public String smtp_auth="true";
 	/** Nom de domaine de l'hôte SMTP. */

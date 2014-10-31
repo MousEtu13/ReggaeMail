@@ -2,15 +2,24 @@ package condition;
 
 public class Condition {
 	String regcond;
-	String Periode;
+	String periode;
 
-	public Condition(String regcond, String Periode) {
+	
+	public Condition(String regcond) {
 		this.regcond = regcond;
-		this.Periode = Periode;
+	}
+	
+	public Condition(String regcond, String periode) {
+		this.regcond = regcond;
+		this.periode = periode;
 	}
 
-
-	public int eval() {
+	
+	public boolean eval() {
+		return false;
+	}
+	
+	public int evalBis() {
 		return 0;
 	};
 	
