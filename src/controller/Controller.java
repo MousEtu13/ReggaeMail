@@ -113,7 +113,7 @@ public class Controller {
 				System.out.println ("To: " + rmsg.getAllRecipients ()[0]);
 				System.out.println ("Date: " + rmsg.getReceivedDate ());
 				System.out.println ("Body:" + rmsg.getContent ());
-				//Sender.sendRegMsg (rmsg);
+				Sender.sendRegMsg (rmsg);
 				System.out.println ("Done sending.\n");
 			}
         	
@@ -128,7 +128,7 @@ public class Controller {
         			System.out.println("To: "+rmsg.getAllRecipients()[0]);// a qui envoyer le msg 
         			System.out.println("Date: "+rmsg.getReceivedDate());
         			System.out.println("Body:" + rmsg.getContent());//contenu du msg
-        			//Sender.sendRegMsg(rmsg);
+        			Sender.sendRegMsg(rmsg);
         			System.out.println("Done sending.\n");
         			break;
         		
@@ -140,7 +140,7 @@ public class Controller {
         			System.out.println("To: "+rmsg.getAllRecipients()[0]);// a qui envoyer le msg 
         			System.out.println("Date: "+rmsg.getReceivedDate());
         			System.out.println("Body:" + rmsg.getContent());//contenu du msg
-        			//Sender.sendRegMsg(rmsg);
+        			Sender.sendRegMsg(rmsg);
         			System.out.println("Done sending.\n");
         			
         			System.out.println("-------------------- Preparing and sending the mail To ReggeaMail (MODE : Periode2) -------------------------------");
@@ -157,7 +157,7 @@ public class Controller {
         			System.out.println("Body:" + tmp.getContent());
         			/****/
         			
-        			//Sender.sendRegMsg(tmp);
+        			Sender.sendRegMsg(tmp);
         			System.out.println("Done sending ReggeaMail.\n");
         			
         			
