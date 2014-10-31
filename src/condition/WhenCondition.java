@@ -6,8 +6,11 @@ import java.util.Date;
 
 
 public class WhenCondition extends Condition {
+	String FormatDate="dd/MM/yy";
+	String FormatDateAndHeure = "dd/MM/yy HH:mm";
 
-	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");//ajout de l'heure et minute d'envoi (format 24h)  HH:mm
+	SimpleDateFormat sdf = new SimpleDateFormat(FormatDate);
+
 	
 	public WhenCondition(String regcond, String Periode) throws ParseException {
 		super(regcond , Periode);
@@ -23,5 +26,4 @@ public class WhenCondition extends Condition {
 			return 0;
 		
 	}
-
 }

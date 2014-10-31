@@ -1,7 +1,6 @@
 package condition;
 
 public class Condition {
-	
 	String regcond;
 	String Periode;
 
@@ -10,9 +9,11 @@ public class Condition {
 		this.Periode = Periode;
 	}
 
+
 	public int eval() {
 		return 0;
 	};
 	
 	
 }
+
