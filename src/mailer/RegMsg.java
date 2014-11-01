@@ -1,14 +1,19 @@
 package mailer;
 
-import javax.mail.Message;
 import javax.mail.BodyPart;
+import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 import java.io.IOException;
+
 import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.regex.Pattern; 
 import java.util.regex.Matcher;
 
@@ -20,12 +25,12 @@ import java.util.regex.Matcher;
  * Syntaxe des règles :</br>
  * </br>
  * <ul>
- * 		<li><pre>Paramétrage de la date d'envoi :	regWhen:jj/mm/aa</pre>
+ * 		<li><pre>Paramétrage de la date d'envoi :	regWhen:jj/mm/aa hh:mm</pre>
  * 		<li><pre>Paramétrage du destinataire : 		regTo:dest@mail.com</pre>
  * </ul>
  * @see	<a href="http://fr.wikipedia.org/wiki/Multipurpose_Internet_Mail_Extensions>Article Wikipédia sur le format MIME</a>
  * @see <a href="https://javamail.java.net/nonav/docs/api/javax/mail/internet/MimeMessage.html">javax.mail.internet.MimeMessage</a>
- */
+*/
 public class RegMsg extends MimeMessage {
 	/** Expression regulière décrivant le format de la règle regWhen */
     private static String REGEXTO = "regTo:(.*)";
@@ -33,6 +38,8 @@ public class RegMsg extends MimeMessage {
     private static String REGEXWHEN = "regWhen:(.*)";
     /** Expression régulière décrivant le format de la règle regKey */
 	private static String REGEXKEYWORD = "regKey:(.*)";
+	/** Expression régulière décrivant le format de la règle Periode */
+	private static String REGEXPERIODE = "Periode:(.*)";
 
 	public static boolean isMultipartContentType(String contentType) {
 		return contentType.startsWith("multipart/");
@@ -58,6 +65,26 @@ public class RegMsg extends MimeMessage {
 	 */
 	public Date getReceivedDate() throws MessagingException {
 		return super.getReceivedDate();
+	}
+	
+	/**
+	 * Retourne le contenu de type MIME du message.
+	 * @deprecated À ne pas utiliser pour obtenir le corps du mail : le contenu retourné peut ne pas être du texte.
+	 * @see <a href="http://fr.wikipedia.org/wiki/Multipurpose_Internet_Mail_Extensions">Article Wikipédia sur le format MIME</a>
+	 * @see <a href="https://javamail.java.net/nonav/docs/api/javax/mail/internet/MimeMessage.html#getContent()>javax.mail.internet.MimeMessage.getContent()</a>
+	 */
+	public Object getContent() throws MessagingException, IOException {
+		return super.getContent();
+	}
+	
+	/**
+	 * Modifie le contenu de type MIME du message.
+	 * @deprecated À ne pas utiliser pour modifier le corps du mail : le contenu peut ne pas être du texte.
+	 * @see <a href="http://fr.wikipedia.org/wiki/Multipurpose_Internet_Mail_Extensions">Article Wikipédia sur le format MIME</a>
+	 * @see <a href="https://javamail.java.net/nonav/docs/api/javax/mail/internet/MimeMessage.html#setContent(java.lang.Object,%20java.lang.String)>javax.mail.internet.MimeMessage.setContent(Object o, String type)</a>
+	 */
+	public void setContent(Object o, String type) throws MessagingException {
+		super.setContent(o, type);
 	}
 	
 	/**
@@ -227,7 +254,7 @@ public class RegMsg extends MimeMessage {
 		String body = null;
 	
 		// Construction du pattern et du matcher pour reconnaître REGEXKEYWORD
-		body = getContent ().toString ();
+		body = getBody();
 		Pattern p = Pattern.compile (REGEXKEYWORD);
 		Matcher m = p.matcher (body);
 
@@ -235,6 +262,50 @@ public class RegMsg extends MimeMessage {
 		if (m.find ()) { regkeyword = m.group (1);}
 		
 		return regkeyword;
+	}
+	
+	/**
+	 * Méthode qui recupère la période.
+	 * @return la période.
+	 */
+	public String getPeriode() throws IOException, MessagingException {
+		String periode = null;
+		String body = null;
+
+		body = getBody(); 
+	    Pattern p = Pattern.compile(REGEXPERIODE);
+	    Matcher m = p.matcher(body);
+	    if (m.find()) {periode = m.group(1);}
+		
+		return periode;
+	}
+	
+	/**
+	 * Modification du message a envoyer a ReggeaMail
+	 */
+	public void modifMessage() throws IOException, MessagingException, ParseException {
+		String periode = this.getPeriode();//recuperation de la periode
+		String date= this.getRegWhen();// recup de la date
+		String Date_suivante;
+		String body = null;
+		String FormatDate="dd/MM/yy";
+		
+		// Traitement Date & heure Pour boite ReggeaMail
+		SimpleDateFormat sdf = new SimpleDateFormat(FormatDate);
+		Date d=sdf.parse(date);
+		    
+		GregorianCalendar calendar = new java.util.GregorianCalendar();
+		calendar.setTime(d);
+		calendar.add(Calendar.DAY_OF_YEAR, Integer.parseInt(periode));
+		Date_suivante = sdf.format(calendar.getTime());
+		
+		// Ajout du Contenu Ds le message a envoyé
+		body = getBody();		
+		Pattern p = Pattern.compile(date);
+        Matcher m = p.matcher(body);
+        body = m.replaceFirst(Date_suivante);
+        
+        setBody(body,"text/plain");
 	}
 	
 	/**
@@ -255,6 +326,8 @@ public class RegMsg extends MimeMessage {
 	        p = Pattern.compile(REGEXTO);
 	        m = p.matcher(body);
 	        body = m.replaceFirst("");
+	        //Suppression de la règle Periode du corps du message
+	        body = body.replaceFirst(REGEXPERIODE, "");
 			
 	        // Remplacement du corps du message
 	        setBody(body, "text/html");
@@ -264,7 +337,7 @@ public class RegMsg extends MimeMessage {
 		}
 		catch (Exception e)
 		{
-        	e.printStackTrace();
+	    	e.printStackTrace();
 		}
 	}
 }

@@ -2,10 +2,7 @@ package user;
 
 import java.util.*;
 
-import javax.activation.CommandMap;
-import javax.activation.MailcapCommandMap;
 import javax.mail.*;
-import javax.mail.internet.*;
 
 import mailer.RegAuthenticator;
 

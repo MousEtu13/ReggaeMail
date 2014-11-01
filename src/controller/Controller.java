@@ -4,14 +4,16 @@ import java.io.IOException;
 
 import java.text.ParseException;
 
-import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.internet.*;
 
+import java.util.Scanner;
+
 import user.*;
 import mailer.*;
 import condition.*;
+
 
 /**
  * La classe Controller permet l'éxecution des actions automatisé à effectuer lors du démarrage
@@ -23,7 +25,6 @@ public class Controller {
 	 * @see user.User
 	 */
 	static User u;
-	
 	/**
 	 * Fonction principale du contrôleur : récupération et traitement des
 	 * mails de programmation.
@@ -33,7 +34,8 @@ public class Controller {
 	 * @throws ParseException		Exceptions levées par des erreurs de parsing (java.text) du mail.
 	 */
 	public static void main(String[] args) throws MessagingException, IOException, ParseException {
-		String contentType = null;
+		Scanner sc = new Scanner (System.in);
+		String key = "";
 		
 		System.out.println("Welcome to the ReggaeMail experience.\n");
 		
@@ -50,12 +52,32 @@ public class Controller {
         System.out.println("  No of Unread Messages : " + Reader.folder.getUnreadMessageCount());
 		System.out.println("Done.\n");
 		
+		/* -------------------------------------------------------------------------- */
+		/* Lecture entrée clavier pour récupération de mot clé
+		/* ((------------------------------------------------------------------------ */
+		
+		do {
+			System.out.print ("Souhaitez vous envoyer des mails à partir d'un mot clé ? [o/N] ");
+			key = sc.nextLine ();
+			System.out.println (key);
+		} while (key.equals ("") && key.equals ("O") && key.equals ("O") && key.equals ("n") && key.equals ("N"));
+		
+		if (key.equals ("O") || key.equals ("o")) {
+			System.out.print ("Entrez le mot clé: ");
+			key = sc.nextLine ();
+			System.out.println();
+		}
+		else {
+			key = "";
+		}
+		/* -------------------------------------------------------------------------- */
+		/* -------------------------------------------------------------------------- */
+
 		// Traitement de chaque mail
 		System.out.println("Going through each mail... ");
         for (Message msg : Reader.messages) 
         {
         	RegMsg rmsg = new RegMsg((MimeMessage) msg);
-        	contentType = rmsg.getContentType();
 	        	        	
 	        System.out.println("*****************************************************************************");
 	        //System.out.println(msg.getMessageNumber());
@@ -75,34 +97,91 @@ public class Controller {
 	         
 	        // Évaluation de la condition d'envoi RegWhen
 	        System.out.println("-------------------- Evaluating the Condition -------------------------------");
-	  		//RegMsg rmsg=new RegMsg((MimeMessage) msg);
-	  			String regwhen = rmsg.getRegWhen();
-	  			Condition c;
-	  			if (regwhen==null) {c = new Condition("");}
-	  			else {
-	  				c= new WhenCondition(regwhen);
-	  	  			System.out.println("regWhen: "+regwhen);
-	  			};
-	  			System.out.println("condition?: "+c.eval());
-	  			
-	  			// Préparation et envoi du mail si la condition est remplie
-	  			if (c.eval()) {
-	  				System.out.println("-------------------- Preparing and sending the mail  -------------------------------");
-	  				rmsg.prepare();
-	  				System.out.println("Subject: " + rmsg.getSubject());
-	  				System.out.println("From: " + rmsg.getFrom()[0]);
-	  				System.out.println("To: "+rmsg.getAllRecipients()[0]);
-	  				System.out.println("Date: "+msg.getReceivedDate());
-	  				System.out.println("Body:\n" + rmsg.getBody());
-	  				Sender.sendRegMsg(rmsg);
-	  				System.out.println("Done sending.\n");
-	  			}
-	  			System.out.println("Done with that mail.\n");
+	  		String regwhen = rmsg.getRegWhen(); // Date et heure
+	  		String regkey = rmsg.getRegKey();
+        	String periode = rmsg.getPeriode();
+	  		Condition c;
+	  		
+	  		if (regwhen==null && periode == null)
+	  			c = new Condition("");
+	  		else {
+	  			c = new WhenCondition(regwhen, periode);
+	  	  		System.out.println("regWhen: "+ regwhen);
+	  	  		System.out.println("periode: "+ rmsg.getPeriode());
+	  		};
+	  		System.out.println("condition?: "+ c.eval());
+	  		
+	  		// Traitement par mot clé
+        	if (key.equals(regkey)) {
+				System.out.println ("---------------------------- Preparing and sending the mail (MODE : KeyMode) --------------------------------------");
+				rmsg.prepare ();
+				System.out.println ("Subject: " + rmsg.getSubject());
+				System.out.println ("From: " + rmsg.getFrom()[0]);
+				System.out.println ("To: " + rmsg.getAllRecipients()[0]);
+				/* Ne pas utiliser RegMsg.getReceivedDate() (c.f documentation de
+		         * la méthode dans documentation de la classe RegMsg) */
+				System.out.println ("Date: " + msg.getReceivedDate());
+				System.out.println ("Body:" + rmsg.getBody());
+				Sender.sendRegMsg (rmsg);
+				System.out.println ("Done sending.\n");
+			}
+        	
+        	// Traitement Normal
+        	switch (c.evalBis()){
+        		
+        		case 1:
+        			System.out.println("-------------------------- Preparing and sending the mail (MODE : Periode1) -------------------------------------");
+        			rmsg.prepare();
+        			System.out.println("Subject: " + rmsg.getSubject()); 
+        			System.out.println("From: " + rmsg.getFrom()[0]);
+        			System.out.println("To: "+rmsg.getAllRecipients()[0]); 
+        			/* Ne pas utiliser RegMsg.getReceivedDate() (c.f documentation de
+        	         * la méthode dans documentation de la classe RegMsg) */
+        			System.out.println("Date: "+ msg.getReceivedDate());
+        			System.out.println("Body:" + rmsg.getBody());
+        			Sender.sendRegMsg(rmsg);
+        			System.out.println("Done sending.\n");
+        			break;
+        		
+        		case 2:
+        			System.out.println("---------------------------- Preparing and sending the mail (MODE : Periode2) ------------------------------------");
+        			rmsg.prepare();
+        			System.out.println("Subject: " + rmsg.getSubject());
+        			System.out.println("From: " + rmsg.getFrom()[0]);
+        			System.out.println("To: "+ rmsg.getAllRecipients()[0]);
+        			/* Ne pas utiliser RegMsg.getReceivedDate() (c.f documentation de
+        	         * la méthode dans documentation de la classe RegMsg) */
+        			System.out.println("Date: "+ msg.getReceivedDate());
+        			System.out.println("Body:" + rmsg.getBody());
+        			Sender.sendRegMsg(rmsg);
+        			System.out.println("Done sending.\n");
+        			
+        			System.out.println("-------------------- Preparing and sending the mail To ReggeaMail (MODE : Periode2) -------------------------------");
+        			
+        			// Traitement du message
+        			RegMsg tmp = new RegMsg((MimeMessage) msg);
+        			
+        			tmp.modifMessage();
+        			System.out.println("Subject: " + tmp.getSubject());
+        			tmp.setFrom(rmsg.getAllRecipients()[0]);
+        			tmp.setSender(rmsg.getFrom()[0]);
+        			System.out.println("From: " + tmp.getFrom()[0]);
+        			System.out.println("To: "+ tmp.getAllRecipients()[0]);
+        			/* Ne pas utiliser RegMsg.getReceivedDate() (c.f documentation de
+        	         * la méthode dans documentation de la classe RegMsg) */
+        			System.out.println("Date: "+ msg.getReceivedDate());
+        			System.out.println("Body:" + tmp.getBody());
+        			Sender.sendRegMsg(tmp);
+        			System.out.println("Done sending ReggeaMail.\n");        			
+        			break;
+        		
+        		default:
+        			break;
+        	}
+        	System.out.println("Done with that mail.\n");
         }
         System.out.println("Done with all that mail.\n");
         Reader.closeFolder();
-		
-		System.out.println("Done till next cron.\n");
+        System.out.println("Done till next cron.\n");
 	}
-
 }

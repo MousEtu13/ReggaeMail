@@ -2,15 +2,9 @@ package mailer;
 
 import user.*;
 
-import java.io.*;
-import java.util.*;
-
 import javax.mail.*;
-import javax.mail.Flags.Flag;
-import javax.mail.internet.*;
 
 import com.sun.mail.imap.IMAPFolder;
-import com.sun.mail.imap.IMAPMessage;
 
 /**
  * La classe Reader implémente un lecteur des dossiers IMAP d'un utilisateur ReggaeMail (adresse mail secondaire).

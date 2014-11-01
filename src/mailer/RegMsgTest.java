@@ -34,7 +34,7 @@ public class RegMsgTest {
 		//make a message
 		MimeMessage msg = new MimeMessage(u.getSession());
 		msg.setFrom(new InternetAddress(u.primaryemail));
-		msg.setRecipients(Message.RecipientType.TO,InternetAddress.parse("pablo.arrighi.reggaemail@gmail.com"));
+		msg.setRecipients(Message.RecipientType.TO,InternetAddress.parse("fekari.mustapha.reggaemai@gmail.com"));
 		msg.setSubject("Test Subject");
 		msg.setContent(textBody, "text/html");
 		
@@ -70,7 +70,7 @@ public class RegMsgTest {
 		//make a message
 		MimeMessage msg = new MimeMessage(u.getSession());
 		msg.setFrom(new InternetAddress(u.primaryemail));
-		msg.setRecipients(Message.RecipientType.TO,InternetAddress.parse("pablo.arrighi.reggaemail@gmail.com"));
+		msg.setRecipients(Message.RecipientType.TO,InternetAddress.parse("fekari.mustapha.reggaemai@gmail.com"));
 		msg.setSubject("Test Subject");
 		msg.setContent(textBody, "text/html");
 		

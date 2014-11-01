@@ -14,6 +14,40 @@ public class WhenConditionTest {
 
 
 	@Test
+	public void testEvalBis() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm");
+    			
+		
+		//1er cas 
+		try {
+			Condition c= new WhenCondition("24/08/1978 19:19", null);
+			assertTrue(c.evalBis()==0);
+			c= new WhenCondition(sdf.format(new Date()),null);
+			assertTrue(c.evalBis()==1);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			assertTrue(false);
+		}
+		
+		
+		//2 eme cas
+		try {
+			Condition c= new WhenCondition("24/08/1978 19:19", "23");
+			assertTrue(c.evalBis()==0);
+			c= new WhenCondition(sdf.format(new Date()),"23");
+			assertTrue(c.evalBis()==2);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			assertTrue(false);
+		}
+
+		
+
+	}
+	
+	@Test
 	public void testEval() {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
     	
@@ -28,5 +62,6 @@ public class WhenConditionTest {
 			assertTrue(false);
 		}
 	}
+	
 
 }
