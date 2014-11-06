@@ -12,15 +12,25 @@ public class WhenCondition extends Condition {
 	SimpleDateFormat sdf = new SimpleDateFormat(FormatDate);
 
 	
-	public WhenCondition(String regcond, String Periode) throws ParseException {
-		super(regcond , Periode);
+	public WhenCondition(String regcond) throws ParseException {
+		super(regcond);
 		
 	}
-
-	public int eval() {
-		if ((sdf.format(new Date()).compareTo(regcond)==0) && (Periode == null))// pas de periode
+	
+	public WhenCondition(String regcond, String periode) throws ParseException {
+		super(regcond , periode);
+		
+	}
+	
+	
+	public boolean eval() {
+		return (sdf.format(new Date()).compareTo(regcond)==0);
+	}
+	
+	public int evalBis() {
+		if ((sdf.format(new Date()).compareTo(regcond)==0) && (periode == null))// pas de periode
 			return 1;
-		else if((sdf.format(new Date()).compareTo(regcond)==0) && (Periode != null))
+		else if((sdf.format(new Date()).compareTo(regcond)==0) && (periode != null))
 			return 2;
 		else
 			return 0;

@@ -14,16 +14,16 @@ public class WhenConditionTest {
 
 
 	@Test
-	public void testEval() {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+	public void testEvalBis() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy HH:mm");
     			
 		
-		/**1er cas **/
+		//1er cas 
 		try {
-			Condition c= new WhenCondition("24/08/1978", null);
-			assertTrue(c.eval()==0);
+			Condition c= new WhenCondition("24/08/1978 19:19", null);
+			assertTrue(c.evalBis()==0);
 			c= new WhenCondition(sdf.format(new Date()),null);
-			assertTrue(c.eval()==1);
+			assertTrue(c.evalBis()==1);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -31,12 +31,12 @@ public class WhenConditionTest {
 		}
 		
 		
-		/**2 eme cas**/
+		//2 eme cas
 		try {
-			Condition c= new WhenCondition("24/08/1978", "23");
-			assertTrue(c.eval()==0);
+			Condition c= new WhenCondition("24/08/1978 19:19", "23");
+			assertTrue(c.evalBis()==0);
 			c= new WhenCondition(sdf.format(new Date()),"23");
-			assertTrue(c.eval()==2);
+			assertTrue(c.evalBis()==2);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -46,5 +46,22 @@ public class WhenConditionTest {
 		
 
 	}
+	
+	@Test
+	public void testEval() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+    	
+		try {
+			Condition c= new WhenCondition("24/08/1978");
+			assertFalse(c.eval());
+			c= new WhenCondition(sdf.format(new Date()));
+			assertTrue(c.eval());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			assertTrue(false);
+		}
+	}
+	
 
 }
