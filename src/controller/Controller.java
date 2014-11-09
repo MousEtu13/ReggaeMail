@@ -59,7 +59,7 @@ public class Controller {
 		/* TODO AVANT DE LANCER LE PROGRAMME VEUILLER METTRE A JOUR LE CHEMIN
 		 * DU FICHIER TEXTE information_user.txt
 		 */
-		br = new BufferedReader(new FileReader("/home/jon-snow/workspace_new/ReggaeMail_Mous/information_user.txt"));
+		br = new BufferedReader(new FileReader("/home/jon-snow/workspace_new/ReggaeMail/information_user.txt"));
 
 		//récupération des donnée fichier texte
 		try {
