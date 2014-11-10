@@ -81,7 +81,7 @@ public class RegMsg extends MimeMessage {
 	 * Retourne le contenu de type MIME du message.
 	 * @deprecated À ne pas utiliser pour obtenir le corps du mail : le contenu retourné peut ne pas être du texte.
 	 * @see <a href="http://fr.wikipedia.org/wiki/Multipurpose_Internet_Mail_Extensions">Article Wikipédia sur le format MIME</a>
-	 * @see <a href="https://javamail.java.net/nonav/docs/api/javax/mail/internet/MimeMessage.html#getContent()>javax.mail.internet.MimeMessage.getContent()</a>
+	 * @see <a href="https://javamail.java.net/nonav/docs/api/javax/mail/internet/MimeMessage.html#getContent()">javax.mail.internet.MimeMessage.getContent()</a>
 	 */
 	public Object getContent() throws MessagingException, IOException {
 		return super.getContent();
