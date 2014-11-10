@@ -21,8 +21,7 @@ public class Condition {
 	
 	public int evalBis() {
 		return 0;
-	};
+	}
 	
 	
 }
-

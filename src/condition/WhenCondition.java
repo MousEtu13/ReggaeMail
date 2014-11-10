@@ -10,7 +10,6 @@ public class WhenCondition extends Condition {
 	String FormatDateAndHeure = "dd/MM/yy HH:mm";
 
 	SimpleDateFormat sdf = new SimpleDateFormat(FormatDate);
-
 	
 	public WhenCondition(String regcond) throws ParseException {
 		super(regcond);

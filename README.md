@@ -16,7 +16,7 @@ rendre le programme instable).
 
 -> Le format JavaDoc pour documenter le code : http://www.jmdoudoux.fr/java/dej/chap-javadoc.htm#javadoc-2
 
-* Vous pouvez modifier des méthodes déjà existantes tant que vous les testez aprés et que vous ne modifier ni les
+* Vous pouvez modifier des méthodes déjà existantes tant que vous les testez aprés et que vous ne modifiez ni les
 argument, ni le résultat en sortie. Si vous souhaitez modifier les arguments (mais pas le résultat), créez plutôt
 une nouvelle méthode du même nom pour la surcharger. Java fait très bien la différence lors de l'utilisation, autant
 en profiter. Si vous souhaitez modifier le type de retour ou tout le résultat en sortie, créez plutôt une nouvelle

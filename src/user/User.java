@@ -4,10 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
 
-import javax.activation.CommandMap;
-import javax.activation.MailcapCommandMap;
 import javax.mail.*;
-import javax.mail.internet.*;
 
 import condition.Condition;
 import condition.WhenCondition;
@@ -16,19 +13,27 @@ import mailer.Reader;
 import mailer.RegAuthenticator;
 import mailer.RegMsg;
 
-
-
 /**
  * La classe User représente l'utilisateur par défaut. Elle rassemble les différents paramètres
  * utilisateur nécéssaires à la configuration et l'utilisation de ReggaeMail, ainsi que les
  * différentes méthodes qui permettent de manipuler ces paramètres.
  */
 public class User {
+<<<<<<< HEAD
 
 	public String primaryemail = "fekari.mustapha@gmail.com";
 	public String secondaryemail = "fekari.mustapha.reggaemai@gmail.com";
 	public String secondarypassword = "Mous13Mous";
 
+=======
+	/** Adresse mail primaire, depuis lequel l'utilisateur envoie les mails de programmation. */
+	public String primaryemail="USER@gmail.com";
+	/** Adresse mail secondaire, vers laquelle l'utilisateur envoie les mails de programmation. */
+	public String secondaryemail="USER@gmail.com";
+	/** Mot de passe de l'adresse mail secondaire. */
+	public String secondarypassword="USERPASS";
+	/** Variable d'activation de l'authentification SMTP. */
+>>>>>>> 0ca46e5e51c180290407eec6c3e1d0fb9601faaa
 	public String smtp_auth="true";
 	/** Nom de domaine de l'hôte SMTP. */
 	public String smtp_host="smtp.gmail.com";
