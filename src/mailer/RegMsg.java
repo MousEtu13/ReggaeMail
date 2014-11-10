@@ -309,13 +309,6 @@ public class RegMsg extends MimeMessage {
         setBody(body,"text/plain");
 	}
 	
-<<<<<<< HEAD
-	
-	
-
-	
-
-=======
 	/**
 	 * Prépare le message pour un envoi automatique (élimination des règles du corps du message
 	 * et modification des champs From et To).
@@ -348,5 +341,5 @@ public class RegMsg extends MimeMessage {
 	    	e.printStackTrace();
 		}
 	}
->>>>>>> 0ca46e5e51c180290407eec6c3e1d0fb9601faaa
+
 }
