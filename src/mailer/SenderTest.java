@@ -1,7 +1,5 @@
 package mailer;
 
-import user.*;
-
 import static org.junit.Assert.*;
 
 import javax.mail.Message;
@@ -40,7 +38,7 @@ public class SenderTest {
 		//MailcapCommandMap mc = (MailcapCommandMap) CommandMap.getDefaultCommandMap();
 		//mc.addMailcap("text/html;; x-java-content-handler=com.sun.mail.handlers.text_html");
 		message.setContent(textBody, "text/html");
-		Sender.sendRegMsg(message);	
+		//Sender.sendRegMsg(message);	
 	    } catch (MessagingException e) {
 	        e.printStackTrace();
 	        assertTrue(false);

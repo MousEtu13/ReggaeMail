@@ -109,7 +109,7 @@ public class Controller {
 	  	  		System.out.println("regWhen: "+ regwhen);
 	  	  		System.out.println("periode: "+ rmsg.getPeriode());
 	  		};
-	  		System.out.println("condition?: "+ c.eval());
+	  		System.out.println("condition?: " + c.eval());
 	  		
 	  		// Traitement par mot clé
         	if (key.equals(regkey)) {
