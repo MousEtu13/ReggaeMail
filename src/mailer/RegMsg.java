@@ -28,7 +28,7 @@ import java.util.regex.Matcher;
  * 		<li><pre>Paramétrage de la date d'envoi :	regWhen:jj/mm/aa hh:mm</pre>
  * 		<li><pre>Paramétrage du destinataire : 		regTo:dest@mail.com</pre>
  * </ul>
- * @see	<a href="http://fr.wikipedia.org/wiki/Multipurpose_Internet_Mail_Extensions>Article Wikipédia sur le format MIME</a>
+ * @see	<a href="http://fr.wikipedia.org/wiki/Multipurpose_Internet_Mail_Extensions">Article Wikipédia sur le format MIME</a>
  * @see <a href="https://javamail.java.net/nonav/docs/api/javax/mail/internet/MimeMessage.html">javax.mail.internet.MimeMessage</a>
 */
 public class RegMsg extends MimeMessage {
