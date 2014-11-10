@@ -22,11 +22,11 @@ import mailer.Sender;
  */
 public class User {
 	/** Adresse mail primaire, depuis lequel l'utilisateur envoie les mails de programmation. */
-	public String primaryemail="USER@gmail.com";
+	public String primaryemail="nacerbellil.pro@gmail.com";
 	/** Adresse mail secondaire, vers laquelle l'utilisateur envoie les mails de programmation. */
-	public String secondaryemail="USER@gmail.com";
+	public String secondaryemail="grospek.reggeamail@gmail.com";
 	/** Mot de passe de l'adresse mail secondaire. */
-	public String secondarypassword="USERPASS";
+	public String secondarypassword="nabilgrosbras";
 	/** Variable d'activation de l'authentification SMTP. */
 	public String smtp_auth="true";
 	/** Nom de domaine de l'hôte SMTP. */
@@ -103,6 +103,7 @@ public class User {
 		String key = "";
 		
 		System.out.println("Welcome to the ReggaeMail experience.\n");
+		System.out.println(this.secondaryemail+" "+this.store_protocol);
 		
 		// Mise en place l'utilisateur par défaut
 		System.out.println("Setting up the default user... ");
@@ -260,6 +261,7 @@ public class User {
 		String key = "";
 		
 		System.out.println("Welcome to the ReggaeMail experience.\n");
+		System.out.println(this.secondaryemail+" "+this.store_protocol);
 		
 		// Mise en place l'utilisateur par défaut
 		System.out.println("Setting up the default user... ");
@@ -314,7 +316,7 @@ public class User {
 	        System.out.println("To: "+ rmsg.getAllRecipients()[0].toString());
 	        /* Ne pas utiliser RegMsg.getReceivedDate() (c.f documentation de
 	         * la méthode dans documentation de la classe RegMsg) */
-	        System.out.println("Date: "+ msg.getReceivedDate().toString());
+	        //System.out.println("Date: "+ msg.getReceivedDate().toString());
 	        System.out.println("Body:\n" + rmsg.getBody());
 	        
 	        //System.out.println(msg.getContentType());

@@ -2,12 +2,12 @@
 nacerbellil.pro@gmail.com
 grospek.reggaemail@gmail.com
 nabilgrosbras
-pop3
-malek.karki.reggae@gmail.com
-sofiane.charouk.reggaemail@gmail.com
-;;:!;;.!
 imaps
+nacerbellil.pro@gmail.com
+grospek.reggaemail@gmail.com
+nabilgrosbras
+pop3
 fekari.mustapha@gmail.com
 fekari.mustapha.reggaemai@gmail.com
 Mous13Mous
-imaps
+pop3
