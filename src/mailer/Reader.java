@@ -5,6 +5,9 @@ import user.*;
 import javax.mail.*;
 
 import com.sun.mail.imap.IMAPFolder;
+import com.sun.mail.imap.IMAPMessage;
+import com.sun.mail.pop3.POP3Folder;
+
 
 /**
  * La classe Reader implémente un lecteur des dossiers IMAP d'un utilisateur ReggaeMail (adresse mail secondaire).
@@ -13,15 +16,17 @@ import com.sun.mail.imap.IMAPFolder;
  * @see <a href="https://javamail.java.net/nonav/docs/api/javax/mail/Message.html">javax.mail.Message</a>
  */
 public class Reader {
-	/** Dossier IMAP à lire (boîte de réception */
+	/** Dossier IMAP à lire (boîte de réception) */
 	public static IMAPFolder folder = null;
+	/** Dossier POP3 à lire (boîte de réception) */
+	public static POP3Folder folder_pop3 = null;
 	/** Dossier de stockage du dossier IMAP */
 	public static Store store = null;
 	/** Tableau des messages mails */
-	public static Message[] messages = null;  
+	public static Message[] messages = null;
 	
 	/**
-	 * Lit le contenu de la boîte de réception du mail secondaire d'un l'utilisateur
+	 * Lit le contenu de la boîte de réception du mail secondaire d'un l'utilisateur via protocol IMAP
 	 * ReggaeMail donné en paramètre de la méthode.
 	 * @param u						L'utilisateur ReggaeMail dont le dossier doit être lu.
 	 * @throws MessagingException	Exceptions levées par les classes de messagerie de l'API javax.mail.
@@ -38,6 +43,23 @@ public class Reader {
 	}
 	
 	/**
+	 * Lit le contenu de la boîte de réception du mail secondaire d'un l'utilisateur via protocol POP3
+	 * ReggaeMail donné en paramètre de la méthode.
+	 * @param u						L'utilisateur ReggaeMail dont le dossier doit être lu.
+	 * @throws MessagingException	Exceptions levées par les classes de messagerie de l'API javax.mail.
+	 */
+	public static void readFolder_pop3(User u) throws MessagingException{
+        Session session = u.getSession_pop3();
+
+            //Get the messages
+            store = session.getStore("pop3");
+            store.connect("pop.gmail.com",u.secondaryemail, u.secondarypassword);
+            folder_pop3 = (POP3Folder) store.getFolder("inbox");
+            if (!folder_pop3.isOpen()) folder_pop3.open(Folder.READ_WRITE);
+            messages = Reader.folder_pop3.getMessages();
+	}
+	
+	/**
 	 * Ferme les dossiers ouvert du Reader.
 	 */
 	public static void closeFolder(){
@@ -49,5 +71,19 @@ public class Reader {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Ferme les dossiers ouvert du Reader.
+	 */
+	public static void closeFolder_pop3(){
+        try {
+        if (Reader.folder_pop3 != null && Reader.folder_pop3.isOpen()) { Reader.folder_pop3.close(true); }
+        if (Reader.store != null) { Reader.store.close(); }
+        } 
+        catch (MessagingException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 }
