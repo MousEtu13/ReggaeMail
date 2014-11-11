@@ -13,11 +13,11 @@ import mailer.RegAuthenticator;
  */
 public class User {
 	/** Adresse mail primaire, depuis lequel l'utilisateur envoie les mails de programmation. */
-	public String primaryemail="charly.celereau@gmail.com";
+	public String primaryemail="USER@gmail.com";
 	/** Adresse mail secondaire, vers laquelle l'utilisateur envoie les mails de programmation. */
-	public String secondaryemail="reggaeman.reggaemail@gmail.com";
+	public String secondaryemail="USER@gmail.com";
 	/** Mot de passe de l'adresse mail secondaire. */
-	public String secondarypassword="RegMailGL";
+	public String secondarypassword="USERPASSWORD";
 	/** Variable d'activation de l'authentification SMTP. */
 	public String smtp_auth="true";
 	/** Nom de domaine de l'hôte SMTP. */
