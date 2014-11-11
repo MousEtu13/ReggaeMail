@@ -2,14 +2,9 @@ package user;
 
 import java.util.*;
 
-import javax.activation.CommandMap;
-import javax.activation.MailcapCommandMap;
 import javax.mail.*;
-import javax.mail.internet.*;
 
 import mailer.RegAuthenticator;
-
-
 
 /**
  * La classe User représente l'utilisateur par défaut. Elle rassemble les différents paramètres
@@ -17,10 +12,12 @@ import mailer.RegAuthenticator;
  * différentes méthodes qui permettent de manipuler ces paramètres.
  */
 public class User {
+
 	
 	public String primaryemail = "fekari.mustapha@gmail.com";
 	public String secondaryemail = "fekari.mustapha.reggaemai@gmail.com";
 	public String secondarypassword = "Mous13Mous";
+
 
 	public String smtp_auth="true";
 	/** Nom de domaine de l'hôte SMTP. */
