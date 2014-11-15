@@ -1,4 +1,0 @@
-Right-click mail.jar, add to Build path.
-Modify the User class to put your own date.
-Projet > Run As > JUnit Test throws all the tests at once.
-If using gmail, make sure your compose mails in plain text mode.

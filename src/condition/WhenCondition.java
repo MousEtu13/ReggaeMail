@@ -9,11 +9,12 @@ import javax.mail.MessagingException;
 import javax.swing.text.html.MinimalHTMLWriter;
 
 import mailer.RegMsg;
+import mailer.Sender;
 
 
 public class WhenCondition extends Condition {
 	
-	public static String interval_cron = "00:30";//interval de temps de Cron
+	public static String interval_cron;//interval de temps de Cron
 	private String FormatHeure="HH:mm";
 	private String FormatDateAndHeure = "dd/MM/yy HH:mm";
 	
@@ -106,6 +107,16 @@ public class WhenCondition extends Condition {
 		}
 		else if(!eval(regmsg) && envoi_message_prevention ){
 			System.out.println("je vais envoyé votre message ");
+			regmsg.prepare_envoi_prochain();
+			try {
+				Sender.sendRegMsg(regmsg);
+			} catch (MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			envoi_message_prevention = false;
 			return 0;
 		}
